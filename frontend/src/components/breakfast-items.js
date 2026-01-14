@@ -1,0 +1,62 @@
+export const breakfastItems = [
+  {
+    id: 1,
+    name: "Masala Dosa",
+    category: "indian",
+    meal: "breakfast",
+    price: 120,
+    image: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=400&h=300&fit=crop&q=80",
+    description: "Crispy fermented crepe filled with spiced potato filling",
+    ingredients: ["Rice", "Urad Dal", "Potatoes", "Onions", "Green Chilies", "Spices"],
+    rating: 4.5,
+    prepTime: 15,
+    servings: 1,
+    difficulty: "Medium",
+    cookTime: "15 min"
+  },
+  {
+    id: 2,
+    name: "Idli Sambar",
+    category: "indian",
+    meal: "breakfast",
+    price: 80,
+    image: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=300&fit=crop&q=80",
+    description: "Steamed rice cakes served with lentil soup and chutney",
+    ingredients: ["Rice", "Urad Dal", "Toor Dal", "Vegetables", "Tamarind", "Spices"],
+    rating: 4.3,
+    prepTime: 10,
+    servings: 2,
+    difficulty: "Easy",
+    cookTime: "10 min"
+  },
+  {
+    id: 3,
+    name: "Pancakes",
+    category: "continental",
+    meal: "breakfast",
+    price: 150,
+    image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=400&h=300&fit=crop&q=80",
+    description: "Fluffy pancakes with maple syrup and fresh berries",
+    ingredients: ["Flour", "Milk", "Eggs", "Butter", "Maple Syrup", "Berries"],
+    rating: 4.7,
+    prepTime: 20,
+    servings: 2,
+    difficulty: "Easy",
+    cookTime: "20 min"
+  },
+  {
+    id: 4,
+    name: "Omelette",
+    category: "continental",
+    meal: "breakfast",
+    price: 100,
+    image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop&q=80",
+    description: "Three egg omelette with vegetables and cheese",
+    ingredients: ["Eggs", "Vegetables", "Cheese", "Milk", "Butter", "Herbs"],
+    rating: 4.4,
+    prepTime: 10,
+    servings: 1,
+    difficulty: "Easy",
+    cookTime: "10 min"
+  }
+];

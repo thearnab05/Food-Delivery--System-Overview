@@ -1,0 +1,127 @@
+/* Login page background */
+.login-bg {
+  position: fixed;
+  inset: 0;
+  min-height: 100vh;
+  width: 100vw;
+  background: url('https://png.pngtree.com/background/20231030/original/pngtree-3d-render-of-a-food-delivery-application-picture-image_5803466.jpg') center/cover no-repeat;
+  z-index: 0;
+}
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  max-width: 370px;
+  background: rgba(255,255,255,0.13);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.25);
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  text-align: center;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.login-form label {
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.5px;
+}
+.login-form input {
+  padding: 0.8rem 1rem;
+  border-radius: 0.7rem;
+  border: none;
+  background: rgba(255,255,255,0.18);
+  color: #222;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  outline: none;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.login-form input:focus {
+  background: #fff;
+  box-shadow: 0 0 0 2px #00e5ff55;
+}
+.login-btn {
+  margin-top: 0.7rem;
+  padding: 0.9rem 0;
+  width: 100%;
+  background: linear-gradient(90deg, #2196f3 0%, #00e5ff 100%);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.9rem;
+  box-shadow: 0 4px 24px #00e5ff44;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.login-btn:hover {
+  background: linear-gradient(90deg, #00e5ff 0%, #2196f3 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 32px #00e5ff77;
+}
+.login-footer {
+  margin-top: 1.5rem;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+}
+.login-footer a {
+  color: #00e5ff;
+  text-decoration: underline;
+  font-weight: 500;
+  margin-left: 0.3rem;
+  transition: color 0.2s;
+}
+.login-footer a:hover {
+  color: #2196f3;
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .login-title {
+    font-size: 1.3rem;
+  }
+  .login-form input {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.7rem;
+  }
+  .login-btn {
+    font-size: 1rem;
+    padding: 0.7rem 0;
+  }
+}

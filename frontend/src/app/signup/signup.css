@@ -1,0 +1,189 @@
+/* Signup page background */
+.signup-bg {
+  position: fixed;
+  inset: 0;
+  min-height: 100vh;
+  width: 100vw;
+  background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+  z-index: 0;
+}
+.signup-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.signup-card {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  max-width: 400px;
+  background: rgba(20, 20, 20, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.25);
+  padding: 2.7rem 2rem 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.left-align {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+.signup-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 2.2rem;
+  letter-spacing: 1.2px;
+  text-align: left;
+  text-shadow: 0 6px 32px rgba(0,0,0,0.25);
+}
+.signup-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.signup-form label {
+  color: #e0e0e0;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.5px;
+  font-size: 1.05rem;
+}
+.signup-form input {
+  padding: 0.9rem 1rem 0.9rem 1rem;
+  border-radius: 0.7rem;
+  border: none;
+  background: rgba(255,255,255,0.13);
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  outline: none;
+  transition: box-shadow 0.2s, background 0.2s, border 0.2s;
+  margin-bottom: 0.2rem;
+}
+.signup-form input::placeholder {
+  color: #b0b0b0;
+  opacity: 1;
+  font-weight: 400;
+}
+.signup-form input:focus {
+  background: #222;
+  box-shadow: 0 0 0 2px #00e5ff55;
+}
+.signup-form .input-error {
+  border: 1.5px solid #ff4e50;
+  background: rgba(255, 78, 80, 0.08);
+}
+.signup-form .error-message {
+  color: #ff4e50;
+  font-size: 0.97rem;
+  margin-top: 0.2rem;
+  margin-bottom: -0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+.security-group {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #222;
+}
+.security-label {
+  color: #b0eaff;
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+  letter-spacing: 0.5px;
+}
+.password-hint {
+  color: #b0b0b0;
+  font-size: 0.97rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.password-strength {
+  font-size: 0.97rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+.password-strength.weak {
+  color: #ff4e50;
+}
+.password-strength.medium {
+  color: #ffb300;
+}
+.password-strength.strong {
+  color: #00e676;
+}
+.signup-btn {
+  margin-top: 1.2rem;
+  margin-bottom: 2.2rem;
+  padding: 1.1rem 0;
+  width: 100%;
+  background: linear-gradient(90deg, #2196f3 0%, #00e5ff 100%);
+  color: #fff;
+  font-size: 1.22rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px #00e5ff33;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.signup-btn:hover {
+  background: linear-gradient(90deg, #00e5ff 0%, #2196f3 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px #00e5ff55;
+}
+.signup-footer {
+  margin-top: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  border-top: 1px solid #222;
+  padding-top: 1.2rem;
+}
+.signup-footer a {
+  color: #00e5ff;
+  text-decoration: underline;
+  font-weight: 500;
+  margin-left: 0.3rem;
+  transition: color 0.2s;
+}
+.signup-footer a:hover {
+  color: #2196f3;
+}
+
+@media (max-width: 600px) {
+  .signup-card {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .signup-title {
+    font-size: 1.3rem;
+  }
+  .signup-form input {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.7rem;
+  }
+  .signup-btn {
+    font-size: 1rem;
+    padding: 0.7rem 0;
+  }
+} 
