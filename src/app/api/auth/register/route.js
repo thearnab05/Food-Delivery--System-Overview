@@ -1,4 +1,5 @@
 import connectDB from '@/lib/db';
+import User from '@/models/user';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
@@ -14,10 +15,8 @@ export async function POST(req) {
             );
         }
 
-        // Mock Check existing user
-        if (!global.mockUsers) global.mockUsers = [];
-
-        const existingUser = global.mockUsers.find(u => u.email === email);
+        // Check existing user
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
             return NextResponse.json(
                 { success: false, error: 'User already exists' },
@@ -25,23 +24,25 @@ export async function POST(req) {
             );
         }
 
-        // Mock Create user
-        const newUser = {
-            _id: Date.now().toString(),
+        // Create user
+        const newUser = await User.create({
             name,
             email,
-            password, // Storing plain text for mock
+            password, // Note: In production, password should be hashed
             role: role || 'user',
-            createdAt: new Date()
-        };
+        });
 
-        global.mockUsers.push(newUser);
-        console.log('MOCK DB: User registered:', newUser);
+        console.log('DB: User registered:', newUser._id);
 
         return NextResponse.json({
             success: true,
-            message: 'User registered successfully (MOCK)',
-            data: newUser,
+            message: 'User registered successfully',
+            data: {
+                _id: newUser._id,
+                name: newUser.name,
+                email: newUser.email,
+                role: newUser.role,
+            },
         });
     } catch (error) {
         console.error('Registration error:', error);

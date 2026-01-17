@@ -1,4 +1,5 @@
 import connectDB from '@/lib/db';
+import User from '@/models/user';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
@@ -14,10 +15,8 @@ export async function POST(req) {
             );
         }
 
-        // Mock Find user
-        if (!global.mockUsers) global.mockUsers = [];
-
-        const user = global.mockUsers.find(u => u.email === email);
+        // Find user
+        const user = await User.findOne({ email });
 
         if (!user) {
             return NextResponse.json(
@@ -26,7 +25,7 @@ export async function POST(req) {
             );
         }
 
-        // Mock Verify password
+        // Verify password (plain text for now as per previous implementation)
         const isMatch = password === user.password;
 
         if (!isMatch) {
@@ -46,7 +45,7 @@ export async function POST(req) {
 
         return NextResponse.json({
             success: true,
-            message: 'Login successful (MOCK)',
+            message: 'Login successful',
             data: userData,
         });
     } catch (error) {
