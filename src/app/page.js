@@ -3,15 +3,20 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ThemeToggle from "../components/ThemeToggle";
 
 export default function Home() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleGetStarted = () => {
-    if (isAuthenticated) {
+    if (mounted && isAuthenticated) {
       router.push("/main");
     } else {
       router.push("/login");

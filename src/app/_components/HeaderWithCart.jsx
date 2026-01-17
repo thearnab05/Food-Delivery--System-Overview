@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,36 +10,46 @@ import {
   Pizza,
   UtensilsCrossed,
   Coffee,
-  IceCream,
-  Salad,
-  Beef,
-  Fish,
-  Apple,
   Search,
   LogIn,
   LogOut,
   User,
+  ChevronDown,
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useCart } from "../../components/CartContext";
 import { useAuth } from "../../contexts/AuthContext";
 import ShoppingCartComponent from "../../components/ShoppingCart";
 import LiveSearch from "../../components/LiveSearch";
 import ThemeToggle from "../../components/ThemeToggle";
 
-function HeaderWithCart({ isAuthenticated, onAuthRequired }) {
+function HeaderWithCart({ isAuthenticated: propIsAuthenticated, onAuthRequired }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { getTotalItems } = useCart();
-  const { user, logout } = useAuth();
+  const { user, logout, isAuthenticated: authIsAuthenticated } = useAuth();
   const router = useRouter();
+  const userMenuRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setIsUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Use local auth state after mounting, fallback to prop
+  const isAuthenticated = mounted ? authIsAuthenticated : false;
 
   const handleCartClick = () => {
     if (!isAuthenticated) {
@@ -51,8 +61,13 @@ function HeaderWithCart({ isAuthenticated, onAuthRequired }) {
 
   const handleLogout = () => {
     logout();
-    // Redirect to home page after logout
+    setIsUserMenuOpen(false);
     window.location.href = '/';
+  };
+
+  const handleMenuItemClick = (path) => {
+    setIsUserMenuOpen(false);
+    router.push(path);
   };
 
   return (
@@ -113,39 +128,53 @@ function HeaderWithCart({ isAuthenticated, onAuthRequired }) {
                   )}
                 </Button>
 
-                {/* User Menu */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center space-x-2"
-                    >
-                      <User className="w-4 h-4" />
-                      <span>{user?.username || 'User'}</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/profile')}>
-                      <User className="w-4 h-4 mr-2" />
-                      Profile
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/orders')}>
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Orders
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      className="cursor-pointer text-red-600 focus:text-red-600"
-                      onClick={handleLogout}
-                    >
-                      <LogOut className="w-4 h-4 mr-2" />
-                      Logout
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                {/* Custom User Menu Dropdown */}
+                <div className="relative" ref={userMenuRef}>
+                  <button
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                    className="flex items-center space-x-2 px-3 py-2 rounded-lg text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="font-medium">{user?.name || user?.username || 'User'}</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {isUserMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">My Account</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{user?.email || ''}</p>
+                      </div>
+
+                      <button
+                        onClick={() => handleMenuItemClick('/profile')}
+                        className="w-full flex items-center space-x-3 px-4 py-3 text-left text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <User className="w-4 h-4" />
+                        <span>Profile</span>
+                      </button>
+
+                      <button
+                        onClick={() => handleMenuItemClick('/orders')}
+                        className="w-full flex items-center space-x-3 px-4 py-3 text-left text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <ShoppingCart className="w-4 h-4" />
+                        <span>Orders</span>
+                      </button>
+
+                      <div className="border-t border-gray-100 dark:border-gray-700 mt-1 pt-1">
+                        <button
+                          onClick={handleLogout}
+                          className="w-full flex items-center space-x-3 px-4 py-3 text-left text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          <span>Logout</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
               <Button
@@ -181,4 +210,4 @@ function HeaderWithCart({ isAuthenticated, onAuthRequired }) {
   );
 }
 
-export default HeaderWithCart; 
+export default HeaderWithCart;

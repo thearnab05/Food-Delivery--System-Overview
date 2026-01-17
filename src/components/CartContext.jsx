@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useReducer } from 'react';
 
-const CartContext = createContext();
+const CartContext = createContext(undefined);
 
 // Helper to safely parse price
 const parsePrice = (price) => {
@@ -172,7 +172,7 @@ export const CartProvider = ({ children }) => {
 
 export const useCart = () => {
   const context = useContext(CartContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useCart must be used within a CartProvider');
   }
   return context;

@@ -3,11 +3,11 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-const ThemeContext = createContext();
+const ThemeContext = createContext(undefined);
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
@@ -16,6 +16,7 @@ export const useTheme = () => {
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
   // Initialize theme from localStorage or system preference
@@ -43,6 +44,9 @@ export const ThemeProvider = ({ children }) => {
         document.documentElement.classList.remove('dark');
       }
     }
+
+    // Mark as mounted after theme is initialized
+    setMounted(true);
 
     // Listen for system theme changes ONLY if no preference is saved (optional, keeping previous logic structure)
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -106,8 +110,17 @@ export const ThemeProvider = ({ children }) => {
     }, 300);
   };
 
+  // Always provide the context value, but include mounted flag
+  const value = {
+    isDark,
+    isTransitioning,
+    toggleTheme,
+    setTheme,
+    mounted
+  };
+
   return (
-    <ThemeContext.Provider value={{ isDark, isTransitioning, toggleTheme, setTheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );

@@ -9,29 +9,42 @@ const API_BASE_URL = '/api';
 let foodItemsCache = null;
 let categoriesCache = null;
 
-// Fetch all food items from API
+// Fetch all food items from API with timeout
 export const fetchAllFoodItems = async () => {
   try {
     if (foodItemsCache) {
       return foodItemsCache;
     }
 
-    const response = await fetch(`${API_BASE_URL}/food-items`);
+    // Create an AbortController for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+    const response = await fetch(`${API_BASE_URL}/food-items`, {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
 
-    if (data.success) {
+    if (data.success && data.data && data.data.length > 0) {
       foodItemsCache = data.data;
       return foodItemsCache;
     } else {
-      throw new Error(data.error || 'Failed to fetch food items');
+      // If no data from API, use static data
+      console.warn('No data from API, using static data');
+      return getStaticFoodItems();
     }
   } catch (error) {
-    console.error('Error fetching food items:', error);
+    if (error.name === 'AbortError') {
+      console.warn('API request timed out, using static data');
+    } else {
+      console.error('Error fetching food items:', error);
+    }
     // Fallback to static data if API fails
-    console.warn('Falling back to static food items data');
     return getStaticFoodItems();
   }
 };
@@ -57,28 +70,38 @@ export const fetchFoodItemsByMeal = async (mealType) => {
   }
 };
 
-// Fetch categories from API
+// Fetch categories from API with timeout
 export const fetchCategories = async () => {
   try {
     if (categoriesCache) {
       return categoriesCache;
     }
 
-    const response = await fetch(`${API_BASE_URL}/categories`);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+    const response = await fetch(`${API_BASE_URL}/categories`, {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
 
-    if (data.success) {
-      categoriesCache = data.data.filter(category => category.id !== 'american'); // Remove american category
+    if (data.success && data.data && data.data.length > 0) {
+      categoriesCache = data.data.filter(category => category.id !== 'american');
       return categoriesCache;
     } else {
-      throw new Error(data.error || 'Failed to fetch categories');
+      return getStaticCategories();
     }
   } catch (error) {
-    console.error('Error fetching categories:', error);
-    // Fallback to static categories
+    if (error.name === 'AbortError') {
+      console.warn('Categories API timed out, using static data');
+    } else {
+      console.error('Error fetching categories:', error);
+    }
     return getStaticCategories();
   }
 };

@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import Header from "../_components/Header";
-import { User, Mail, Calendar, MapPin, Edit2, Save, X, Settings, Key, Trash2, Camera, Shield } from "lucide-react";
+import { User, Mail, Calendar, MapPin, Edit2, Save, X, Settings, Key, Trash2, Camera, Shield, LogOut } from "lucide-react";
 
 export default function ProfilePage() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [isEditingLocation, setIsEditingLocation] = useState(false);
   const [location, setLocation] = useState("San Francisco, CA"); // Mock default
 
@@ -109,6 +109,20 @@ export default function ProfilePage() {
                     <span className="text-gray-400 text-sm font-medium">Disabled</span>
                   </div>
                 </div>
+              </div>
+
+              {/* Logout Button */}
+              <div className="mt-6">
+                <button
+                  onClick={() => {
+                    logout();
+                    window.location.href = '/';
+                  }}
+                  className="w-full flex items-center justify-center space-x-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl hover:bg-red-100 dark:hover:bg-red-900/30 transition-all duration-300 group"
+                >
+                  <LogOut className="w-5 h-5 text-red-600 dark:text-red-400 group-hover:scale-110 transition-transform" />
+                  <span className="font-semibold text-red-600 dark:text-red-400">Logout</span>
+                </button>
               </div>
             </div>
 

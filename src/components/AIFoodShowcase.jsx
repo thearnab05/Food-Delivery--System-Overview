@@ -5,33 +5,52 @@ import { ChevronLeft, ChevronRight, Heart, Star, Clock, Users, ChefHat, Shopping
 import { useCart } from './CartContext';
 import { fetchAllFoodItems, getAllCategories, allFoodItems } from './all-food-items.js';
 
+// Get static categories for initial render
+const getStaticCategories = () => {
+  const categories = [...new Set(allFoodItems.map(item => item.category).filter(cat => cat))];
+  const iconMap = {
+    'indian': '🍛', 'italian': '🍝', 'thai': '🌶️', 'asian': '🍜',
+    'japanese': '🍱', 'chinese': '🥢', 'continental': '🍽️', 'french': '🥖',
+    'mexican': '🌮', 'seafood': '🐟', 'dessert': '🍰', 'healthy': '🥗',
+    'russian': '🥟', 'spanish': '🥘', 'moroccan': '🍲', 'middle-eastern': '🫓'
+  };
+  return categories
+    .filter(category => category !== 'american')
+    .map(category => ({
+      id: category,
+      name: category.charAt(0).toUpperCase() + category.slice(1),
+      icon: iconMap[category] || '🍽️'
+    }));
+};
+
 const AIFoodShowcase = ({ isAuthenticated, onAuthRequired }) => {
   const [currentDish, setCurrentDish] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [imageLoading, setImageLoading] = useState(true);
-  const [foodDishes, setFoodDishes] = useState([]);
-  const [categories, setCategories] = useState([]);
+  // Initialize with static data to prevent hydration mismatch
+  const [foodDishes, setFoodDishes] = useState(allFoodItems);
+  const [categories, setCategories] = useState(getStaticCategories());
   const { addToCart, getTotalItems } = useCart();
 
-  // Fetch food items and categories on component mount
+  // Fetch food items and categories on component mount (optional API refresh)
   useEffect(() => {
     const loadData = async () => {
       try {
-        setIsLoading(true);
         const [itemsData, categoriesData] = await Promise.all([
           fetchAllFoodItems(),
           getAllCategories()
         ]);
-        setFoodDishes(itemsData);
-        setCategories(categoriesData);
+        // Only update if we got different data from API
+        if (itemsData && itemsData.length > 0) {
+          setFoodDishes(itemsData);
+        }
+        if (categoriesData && categoriesData.length > 0) {
+          setCategories(categoriesData);
+        }
       } catch (error) {
         console.error('Error loading food data:', error);
-        // Fallback to static data
-        setFoodDishes(allFoodItems);
-        setCategories(getAllCategories());
-      } finally {
-        setIsLoading(false);
+        // Keep using static data on error
       }
     };
 
@@ -68,7 +87,7 @@ const AIFoodShowcase = ({ isAuthenticated, onAuthRequired }) => {
       return;
     }
     if (!currentDishData) return;
-    
+
     const success = addToCart(currentDishData);
     if (success) {
       console.log('Item added to cart successfully');
@@ -106,8 +125,8 @@ const AIFoodShowcase = ({ isAuthenticated, onAuthRequired }) => {
           </p>
           <div className="flex justify-center items-center mt-6 space-x-2">
             <div className="w-2 h-2 bg-primary rounded-full animate-ping"></div>
-            <div className="w-2 h-2 bg-destructive rounded-full animate-ping" style={{animationDelay: '0.2s'}}></div>
-            <div className="w-2 h-2 bg-pink-500 rounded-full animate-ping" style={{animationDelay: '0.4s'}}></div>
+            <div className="w-2 h-2 bg-destructive rounded-full animate-ping" style={{ animationDelay: '0.2s' }}></div>
+            <div className="w-2 h-2 bg-pink-500 rounded-full animate-ping" style={{ animationDelay: '0.4s' }}></div>
           </div>
         </div>
 
@@ -115,11 +134,10 @@ const AIFoodShowcase = ({ isAuthenticated, onAuthRequired }) => {
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           <button
             onClick={() => handleCategoryChange('all')}
-            className={`group relative flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-bold transition-all duration-500 border-2 hover:scale-110 hover:shadow-hover overflow-hidden hover-lift ${
-              selectedCategory === 'all'
+            className={`group relative flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-bold transition-all duration-500 border-2 hover:scale-110 hover:shadow-hover overflow-hidden hover-lift ${selectedCategory === 'all'
                 ? 'bg-gradient-to-r from-primary via-destructive to-pink-500 text-primary-foreground border-primary shadow-hover scale-110'
                 : 'bg-card/80 backdrop-blur-sm text-foreground border-border hover:bg-accent hover:border-primary/50 hover:shadow-lg'
-            }`}
+              }`}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <span className="text-xl animate-pulse group-hover:animate-bounce">🌟</span>
@@ -132,11 +150,10 @@ const AIFoodShowcase = ({ isAuthenticated, onAuthRequired }) => {
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-500 border-2 hover:scale-110 hover:shadow-hover overflow-hidden hover-lift ${
-                selectedCategory === category.id
+              className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl text-sm font-semibold transition-all duration-500 border-2 hover:scale-110 hover:shadow-hover overflow-hidden hover-lift ${selectedCategory === category.id
                   ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white border-blue-700 shadow-hover scale-110'
                   : 'bg-card/80 backdrop-blur-sm text-foreground border-border hover:bg-accent hover:border-blue-300 hover:shadow-lg'
-              }`}
+                }`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <span className="text-lg transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">{category.icon}</span>
@@ -291,9 +308,9 @@ const AIFoodShowcase = ({ isAuthenticated, onAuthRequired }) => {
                     </div>
 
                     {/* Sparkle effects */}
-                    <div className="absolute top-2 right-4 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{animationDelay: '0.1s'}}></div>
-                    <div className="absolute top-4 right-6 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{animationDelay: '0.3s'}}></div>
-                    <div className="absolute bottom-3 right-8 w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{animationDelay: '0.5s'}}></div>
+                    <div className="absolute top-2 right-4 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="absolute top-4 right-6 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '0.3s' }}></div>
+                    <div className="absolute bottom-3 right-8 w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '0.5s' }}></div>
 
                     {/* Border glow effect */}
                     <div className="absolute inset-0 rounded-2xl border-2 border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-105"></div>

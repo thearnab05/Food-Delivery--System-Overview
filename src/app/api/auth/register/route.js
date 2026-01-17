@@ -4,11 +4,18 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
     try {
+        console.log('Registration attempt started...');
+
         await connectDB();
+        console.log('DB connected successfully');
+
         const body = await req.json();
+        console.log('Registration data received:', { name: body.name, email: body.email, hasPassword: !!body.password });
+
         const { name, email, password, role } = body;
 
         if (!name || !email || !password) {
+            console.log('Missing required fields');
             return NextResponse.json(
                 { success: false, error: 'Please provide all required fields' },
                 { status: 400 }
@@ -17,14 +24,17 @@ export async function POST(req) {
 
         // Check existing user
         const existingUser = await User.findOne({ email });
+        console.log('Existing user check:', existingUser ? 'User exists' : 'No existing user');
+
         if (existingUser) {
             return NextResponse.json(
-                { success: false, error: 'User already exists' },
+                { success: false, error: 'User already exists with this email' },
                 { status: 400 }
             );
         }
 
         // Create user
+        console.log('Creating new user...');
         const newUser = await User.create({
             name,
             email,
@@ -32,7 +42,7 @@ export async function POST(req) {
             role: role || 'user',
         });
 
-        console.log('DB: User registered:', newUser._id);
+        console.log('DB: User registered successfully:', newUser._id, newUser.email);
 
         return NextResponse.json({
             success: true,
@@ -46,6 +56,7 @@ export async function POST(req) {
         });
     } catch (error) {
         console.error('Registration error:', error);
+        console.error('Error details:', error.message, error.stack);
         return NextResponse.json(
             { success: false, error: error.message || 'Registration failed' },
             { status: 500 }
