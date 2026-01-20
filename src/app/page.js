@@ -47,31 +47,32 @@ export default function Home() {
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif" }}>
       {/* Navigation */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-transparent fixed-top dark:bg-slate-900/95 dark:backdrop-blur-md">
-        <div className="container">
-          <a className="navbar-brand fw-bold text-primary dark:text-primary" href="#" style={{ fontSize: '1.8rem' }}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-transparent fixed-top dark:bg-slate-900/95 dark:backdrop-blur-md px-2 sm:px-4">
+        <div className="container mx-auto">
+          <a className="navbar-brand fw-bold text-primary dark:text-primary text-lg sm:text-xl md:text-2xl" href="#">
             <i className="fas fa-utensils me-2"></i>
-            Take It Cheesy
+            <span className="hidden xs:inline">Take It Cheesy</span>
+            <span className="xs:hidden">TIC</span>
           </a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <button className="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav ms-auto flex-col md:flex-row gap-1 md:gap-2">
               <li className="nav-item">
-                <a className="nav-link active text-gray-800 dark:text-white hover:text-primary transition-colors duration-300" href="#home">Home</a>
+                <a className="nav-link active text-gray-800 dark:text-white hover:text-primary transition-colors duration-300 py-2 md:py-1" href="#home">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-gray-800 dark:text-white hover:text-primary transition-colors duration-300" href="#about">About</a>
+                <a className="nav-link text-gray-800 dark:text-white hover:text-primary transition-colors duration-300 py-2 md:py-1" href="#about">About</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-gray-800 dark:text-white hover:text-primary transition-colors duration-300" href="#menu">Menu</a>
+                <a className="nav-link text-gray-800 dark:text-white hover:text-primary transition-colors duration-300 py-2 md:py-1" href="#menu">Menu</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-gray-800 dark:text-white hover:text-primary transition-colors duration-300" href="#contact">Contact</a>
+                <a className="nav-link text-gray-800 dark:text-white hover:text-primary transition-colors duration-300 py-2 md:py-1" href="#contact">Contact</a>
               </li>
             </ul>
-            <div className="ms-3">
+            <div className="ms-0 md:ms-3 mt-2 md:mt-0">
               <ThemeToggle className="hover:bg-white/20 text-white hover:scale-110 transition-all duration-200" />
             </div>
           </div>
@@ -79,57 +80,55 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center pt-20 bg-white dark:bg-slate-900 overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center pt-16 sm:pt-20 pb-8 bg-white dark:bg-slate-900 overflow-hidden">
         {/* Abstract Background Shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-[20%] -right-[10%] w-[70vh] h-[70vh] rounded-full bg-gradient-to-br from-orange-200/40 to-yellow-200/40 dark:from-orange-500/10 dark:to-yellow-500/5 blur-3xl"></div>
-          <div className="absolute top-[20%] -left-[10%] w-[50vh] h-[50vh] rounded-full bg-gradient-to-tr from-red-200/30 to-orange-100/30 dark:from-red-500/10 dark:to-orange-500/5 blur-3xl"></div>
+          <div className="absolute -top-[20%] -right-[10%] w-[50vh] sm:w-[60vh] md:w-[70vh] h-[50vh] sm:h-[60vh] md:h-[70vh] rounded-full bg-gradient-to-br from-orange-200/40 to-yellow-200/40 dark:from-orange-500/10 dark:to-yellow-500/5 blur-3xl"></div>
+          <div className="absolute top-[20%] -left-[10%] w-[40vh] sm:w-[45vh] md:w-[50vh] h-[40vh] sm:h-[45vh] md:h-[50vh] rounded-full bg-gradient-to-tr from-red-200/30 to-orange-100/30 dark:from-red-500/10 dark:to-orange-500/5 blur-3xl"></div>
           {/* Grid Pattern overlay */}
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 dark:opacity-20 mix-blend-soft-light"></div>
         </div>
 
-        <div className="relative z-10 container">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6">
           <div className="row align-items-center">
-            <div className="col-lg-6 mb-12 lg:mb-0">
-              <div className="relative">
-                <span className="inline-block py-2 px-4 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-sm font-bold tracking-wide mb-6 animate-pulse shadow-sm">
+            <div className="col-lg-6 mb-8 lg:mb-0">
+              <div className="relative text-center lg:text-left">
+                <span className="inline-block py-1.5 sm:py-2 px-3 sm:px-4 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-xs sm:text-sm font-bold tracking-wide mb-4 sm:mb-6 animate-pulse shadow-sm">
                   🚀 Fastest Delivery in Town
                 </span>
-                <h1 className="text-gray-900 dark:text-white leading-tight font-extrabold tracking-tight" style={{
-                  fontSize: 'clamp(3.5rem, 6vw, 5rem)',
-                  marginBottom: '1.5rem',
+                <h1 className="text-gray-900 dark:text-white leading-tight font-extrabold tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6" style={{
                   animation: 'fadeInUp 0.8s ease-out'
                 }}>
-                  Experience the <br />
+                  Experience the <br className="hidden sm:block" />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 animate-gradient-x">
                     Taste of Joy
                   </span>
                 </h1>
-                <p className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed mb-10 max-w-lg font-medium" style={{
+                <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 md:mb-10 max-w-lg mx-auto lg:mx-0 font-medium px-2 sm:px-0" style={{
                   animation: 'fadeInUp 1s ease-out 0.2s backwards'
                 }}>
                   Savor the finest cuisines delivered straight to your doorstep.
                   Fresh ingredients, expert chefs, and unforgettable flavors awaiting you.
                 </p>
 
-                <div className="flex flex-wrap gap-4" style={{ animation: 'fadeInUp 1s ease-out 0.4s backwards' }}>
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start px-4 sm:px-0" style={{ animation: 'fadeInUp 1s ease-out 0.4s backwards' }}>
                   <button
-                    className="flex items-center space-x-3 bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transform hover:-translate-y-1 transition-all duration-300"
+                    className="flex items-center justify-center space-x-2 sm:space-x-3 bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transform hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto"
                     onClick={handleGetStarted}
                   >
-                    <i className="fas fa-shopping-cart text-lg"></i>
-                    <span>Order Now</span>
+                    <i className="fas fa-shopping-cart text-base sm:text-lg"></i>
+                    <span className="text-sm sm:text-base">Order Now</span>
                   </button>
                   <button
-                    className="flex items-center space-x-3 bg-white dark:bg-slate-800 text-gray-800 dark:text-white border-2 border-gray-100 dark:border-gray-700 hover:border-orange-500 dark:hover:border-orange-500 px-8 py-4 rounded-full font-bold shadow-sm hover:shadow-md transform hover:-translate-y-1 transition-all duration-300"
+                    className="flex items-center justify-center space-x-2 sm:space-x-3 bg-white dark:bg-slate-800 text-gray-800 dark:text-white border-2 border-gray-100 dark:border-gray-700 hover:border-orange-500 dark:hover:border-orange-500 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold shadow-sm hover:shadow-md transform hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto"
                     onClick={scrollToMenu}
                   >
-                    <i className="fas fa-utensils text-lg"></i>
-                    <span>View Menu</span>
+                    <i className="fas fa-utensils text-base sm:text-lg"></i>
+                    <span className="text-sm sm:text-base">View Menu</span>
                   </button>
                 </div>
 
-                <div className="mt-12 flex items-center space-x-8 text-sm font-semibold text-gray-500 dark:text-gray-400" style={{ animation: 'fadeInUp 1s ease-out 0.6s backwards' }}>
+                <div className="mt-8 sm:mt-10 md:mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-400" style={{ animation: 'fadeInUp 1s ease-out 0.6s backwards' }}>
                   <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500"></div> Free Delivery</div>
                   <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-blue-500"></div> 24/7 Support</div>
                   <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-yellow-400"></div> 4.9 Rated</div>
@@ -138,84 +137,83 @@ export default function Home() {
             </div>
 
             <div className="col-lg-6">
-              <div className="relative z-10 p-4 lg:pl-10">
+              <div className="relative z-10 p-2 sm:p-4 lg:pl-10 mt-4 lg:mt-0">
                 {/* Floating Image Container */}
                 <div className="relative animate-float">
                   <img
                     src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80"
                     alt="Delicious Bowl"
-                    className="relative z-10 w-full rounded-[2.5rem] shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 object-cover border-4 border-white dark:border-slate-800"
-                    style={{ maxHeight: '600px' }}
+                    className="relative z-10 w-full max-w-md mx-auto lg:max-w-none rounded-2xl sm:rounded-[2.5rem] shadow-2xl rotate-0 sm:rotate-3 hover:rotate-0 transition-transform duration-500 object-cover border-2 sm:border-4 border-white dark:border-slate-800"
+                    style={{ maxHeight: '400px', objectFit: 'cover' }}
                   />
-                  {/* Decorative Elements */}
-                  <div className="absolute -z-10 top-10 -right-10 w-full h-full rounded-[3rem] border-2 border-orange-500/20 dark:border-orange-400/20 rotate-6"></div>
-                  <div className="absolute -bottom-10 -left-10 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-xl animate-bounce-slow flex items-center space-x-3 z-20 max-w-xs">
-                    <div className="bg-green-100 p-2 rounded-full text-green-600">
-                      <i className="fas fa-motorcycle"></i>
+                  {/* Decorative Elements - Hidden on mobile for cleaner look */}
+                  <div className="hidden sm:block absolute -z-10 top-10 -right-10 w-full h-full rounded-[3rem] border-2 border-orange-500/20 dark:border-orange-400/20 rotate-6"></div>
+                  <div className="absolute -bottom-6 sm:-bottom-10 left-2 sm:-left-10 bg-white dark:bg-slate-800 p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl animate-bounce-slow flex items-center space-x-2 sm:space-x-3 z-20 max-w-[180px] sm:max-w-xs">
+                    <div className="bg-green-100 p-1.5 sm:p-2 rounded-full text-green-600">
+                      <i className="fas fa-motorcycle text-sm sm:text-base"></i>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800 dark:text-white text-sm">On the way!</p>
-                      <p className="text-xs text-gray-500">30 mins delivery</p>
+                      <p className="font-bold text-gray-800 dark:text-white text-xs sm:text-sm">On the way!</p>
+                      <p className="text-[10px] sm:text-xs text-gray-500">30 mins delivery</p>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
-        <div className="container">
-          <div className="row text-center mb-16">
+      <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="row text-center mb-8 sm:mb-12 md:mb-16">
             <div className="col-12">
-              <span className="text-orange-600 dark:text-orange-400 font-bold tracking-wider uppercase text-sm mb-2 block">Our Promise</span>
-              <h2 className="display-4 fw-bold text-gray-900 dark:text-white mb-4">Why Choose Us?</h2>
-              <p className="lead text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Experience the best in food delivery and dining with our premium services designed just for you.</p>
+              <span className="text-orange-600 dark:text-orange-400 font-bold tracking-wider uppercase text-xs sm:text-sm mb-2 block">Our Promise</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Why Choose Us?</h2>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4 sm:px-0">Experience the best in food delivery and dining with our premium services designed just for you.</p>
             </div>
           </div>
-          <div className="row g-4">
-            <div className="col-md-4">
-              <div className="card border border-gray-100 dark:border-gray-700 shadow-lg h-100 bg-white dark:bg-slate-800 rounded-[2rem] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden group">
-                <div className="card-body text-center p-8 relative z-10">
-                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                    <i className="fas fa-shipping-fast text-9xl text-orange-500 transform rotate-12"></i>
+          <div className="row g-3 sm:g-4">
+            <div className="col-12 col-sm-6 col-md-4 mb-4">
+              <div className="card border border-gray-100 dark:border-gray-700 shadow-lg h-100 bg-white dark:bg-slate-800 rounded-xl sm:rounded-[2rem] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden group">
+                <div className="card-body text-center p-4 sm:p-6 md:p-8 relative z-10">
+                  <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-300 hidden sm:block">
+                    <i className="fas fa-shipping-fast text-6xl sm:text-9xl text-orange-500 transform rotate-12"></i>
                   </div>
-                  <div className="w-24 h-24 bg-gradient-to-br from-orange-100 to-orange-50 dark:from-slate-700 dark:to-slate-600 rounded-2xl flex items-center justify-center mx-auto mb-6 text-orange-600 dark:text-orange-400 text-4xl shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-orange-100 to-orange-50 dark:from-slate-700 dark:to-slate-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 text-orange-600 dark:text-orange-400 text-2xl sm:text-3xl md:text-4xl shadow-inner group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-shipping-fast"></i>
                   </div>
-                  <h4 className="card-title text-xl font-bold text-gray-900 dark:text-white mb-3">Fast Delivery</h4>
-                  <p className="card-text text-gray-600 dark:text-gray-400 leading-relaxed">Quick and reliable delivery to your doorstep within 30 minutes. We value your time and hunger.</p>
+                  <h4 className="card-title text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">Fast Delivery</h4>
+                  <p className="card-text text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">Quick and reliable delivery to your doorstep within 30 minutes. We value your time and hunger.</p>
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="card border border-gray-100 dark:border-gray-700 shadow-lg h-100 bg-white dark:bg-slate-800 rounded-[2rem] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden group">
-                <div className="card-body text-center p-8 relative z-10">
-                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                    <i className="fas fa-utensils text-9xl text-orange-500 transform rotate-12"></i>
+            <div className="col-12 col-sm-6 col-md-4 mb-4">
+              <div className="card border border-gray-100 dark:border-gray-700 shadow-lg h-100 bg-white dark:bg-slate-800 rounded-xl sm:rounded-[2rem] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden group">
+                <div className="card-body text-center p-4 sm:p-6 md:p-8 relative z-10">
+                  <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-300 hidden sm:block">
+                    <i className="fas fa-utensils text-6xl sm:text-9xl text-orange-500 transform rotate-12"></i>
                   </div>
-                  <div className="w-24 h-24 bg-gradient-to-br from-orange-100 to-orange-50 dark:from-slate-700 dark:to-slate-600 rounded-2xl flex items-center justify-center mx-auto mb-6 text-orange-600 dark:text-orange-400 text-4xl shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-orange-100 to-orange-50 dark:from-slate-700 dark:to-slate-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 text-orange-600 dark:text-orange-400 text-2xl sm:text-3xl md:text-4xl shadow-inner group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-utensils"></i>
                   </div>
-                  <h4 className="card-title text-xl font-bold text-gray-900 dark:text-white mb-3">Fresh Ingredients</h4>
-                  <p className="card-text text-gray-600 dark:text-gray-400 leading-relaxed">We use only the freshest, locally sourced ingredients to ensure every bite is bursting with flavor.</p>
+                  <h4 className="card-title text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">Fresh Ingredients</h4>
+                  <p className="card-text text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">We use only the freshest, locally sourced ingredients to ensure every bite is bursting with flavor.</p>
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="card border border-gray-100 dark:border-gray-700 shadow-lg h-100 bg-white dark:bg-slate-800 rounded-[2rem] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden group">
-                <div className="card-body text-center p-8 relative z-10">
-                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                    <i className="fas fa-star text-9xl text-orange-500 transform rotate-12"></i>
+            <div className="col-12 col-sm-6 col-md-4 mb-4 mx-auto">
+              <div className="card border border-gray-100 dark:border-gray-700 shadow-lg h-100 bg-white dark:bg-slate-800 rounded-xl sm:rounded-[2rem] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden group">
+                <div className="card-body text-center p-4 sm:p-6 md:p-8 relative z-10">
+                  <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-300 hidden sm:block">
+                    <i className="fas fa-star text-6xl sm:text-9xl text-orange-500 transform rotate-12"></i>
                   </div>
-                  <div className="w-24 h-24 bg-gradient-to-br from-orange-100 to-orange-50 dark:from-slate-700 dark:to-slate-600 rounded-2xl flex items-center justify-center mx-auto mb-6 text-orange-600 dark:text-orange-400 text-4xl shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-orange-100 to-orange-50 dark:from-slate-700 dark:to-slate-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 text-orange-600 dark:text-orange-400 text-2xl sm:text-3xl md:text-4xl shadow-inner group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-star"></i>
                   </div>
-                  <h4 className="card-title text-xl font-bold text-gray-900 dark:text-white mb-3">Best Quality</h4>
-                  <p className="card-text text-gray-600 dark:text-gray-400 leading-relaxed">Five-star quality food prepared by expert chefs who are passionate about culinary excellence.</p>
+                  <h4 className="card-title text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">Best Quality</h4>
+                  <p className="card-text text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">Five-star quality food prepared by expert chefs who are passionate about culinary excellence.</p>
                 </div>
               </div>
             </div>
