@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import connectDB from '@/lib/db';
+import Order from '@/models/Order';
 
 export async function POST(request) {
     try {
@@ -23,14 +25,38 @@ export async function POST(request) {
         // Generate order ID
         const orderId = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
 
-        // In a real application, you would:
-        // 1. Save the order to database
-        // 2. Process payment
-        // 3. Send confirmation email
-        // For now, we'll simulate success
+        // Connect to database and save order
+        try {
+            await connectDB();
 
-        // Simulate a small delay for processing
-        await new Promise(resolve => setTimeout(resolve, 500));
+            const newOrder = new Order({
+                orderId,
+                userEmail: customerInfo.email,
+                items: items.map(item => ({
+                    id: item.id,
+                    name: item.name,
+                    price: parseFloat(item.price) || 0,
+                    quantity: item.quantity,
+                    image: item.image,
+                    category: item.category,
+                })),
+                customerInfo: {
+                    name: customerInfo.name,
+                    phone: customerInfo.phone,
+                    address: customerInfo.address,
+                    email: customerInfo.email,
+                },
+                paymentMethod,
+                total: parseFloat(total) || 0,
+                status: 'confirmed',
+            });
+
+            await newOrder.save();
+            console.log('Order saved to database:', orderId);
+        } catch (dbError) {
+            console.error('Database error (order will still be processed):', dbError);
+            // Continue even if DB save fails - we don't want to break checkout
+        }
 
         return NextResponse.json({
             success: true,

@@ -135,7 +135,7 @@ const ShoppingCart = ({ isOpen, onClose }) => {
                   <div className="flex-1">
                     <h3 className="font-semibold text-gray-800">{item.name}</h3>
                     <p className="text-gray-600 text-sm">{item.category}</p>
-                    <p className="text-blue-600 font-bold">${item.price}</p>
+                    <p className="text-blue-600 font-bold">₹{item.price}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
@@ -172,7 +172,7 @@ const ShoppingCart = ({ isOpen, onClose }) => {
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-lg font-semibold text-gray-800">Total:</span>
                   <span className="text-2xl font-bold text-blue-600">
-                    ${getTotalPrice().toFixed(2)}
+                    ₹{getTotalPrice().toFixed(2)}
                   </span>
                 </div>
                 <button

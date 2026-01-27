@@ -98,6 +98,16 @@ export const orderAPI = {
       throw error.response?.data || error.message;
     }
   },
+
+  getOrders: async (email) => {
+    try {
+      const response = await api.get(`/orders?email=${encodeURIComponent(email)}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      return { orders: [] };
+    }
+  },
 };
 
 export const healthAPI = {

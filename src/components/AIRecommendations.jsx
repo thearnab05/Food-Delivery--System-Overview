@@ -34,7 +34,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.8,
       cookTime: "25 min",
       difficulty: "Easy",
-      price: "$32",
+      price: "₹599",
       image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop",
       aiReason: "Based on your health goals and love for protein-rich meals. Quick and nutritious!",
       tags: ["Healthy", "Quick", "Protein"]
@@ -47,7 +47,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.7,
       cookTime: "20 min",
       difficulty: "Medium",
-      price: "$18",
+      price: "₹349",
       image: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop",
       aiReason: "Currently trending among dessert lovers. Perfect for impressing guests with minimal effort.",
       tags: ["Trending", "Romantic", "Decadent"]
@@ -60,7 +60,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.6,
       cookTime: "35 min",
       difficulty: "Medium",
-      price: "$22",
+      price: "₹449",
       image: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&h=300&fit=crop",
       aiReason: "Perfect for the current season. Warming spices and aromatic flavors that complement cooler weather.",
       tags: ["Seasonal", "Aromatic", "Spicy"]
@@ -73,7 +73,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.7,
       cookTime: "30 min",
       difficulty: "Medium",
-      price: "$20",
+      price: "₹399",
       image: "https://www.jocooks.com/wp-content/uploads/2019/07/pad-thai-1.jpg",
       aiReason: "A balanced mix of sweet, sour, and savory flavors with tamarind, fish sauce, and peanuts.",
       tags: ["Noodles", "Popular", "Street Food"]
@@ -86,7 +86,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.9,
       cookTime: "45 min",
       difficulty: "Medium",
-      price: "$24",
+      price: "₹499",
       image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&h=300&fit=crop",
       aiReason: "Perfect for date nights and special occasions. The AI detected your preference for creamy, comforting dishes.",
       tags: ["Trending", "AI Favorite", "Gourmet"]
@@ -99,7 +99,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.5,
       cookTime: "15 min",
       difficulty: "Easy",
-      price: "$16",
+      price: "₹299",
       image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop",
       aiReason: "Based on your busy schedule. Healthy, quick, and packed with Mediterranean flavors.",
       tags: ["Quick", "Healthy", "Mediterranean"]
@@ -112,7 +112,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.9,
       cookTime: "90 min",
       difficulty: "Hard",
-      price: "$45",
+      price: "₹899",
       image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=300&fit=crop",
       aiReason: "For when you want to challenge yourself. A classic dish that's worth every minute of preparation.",
       tags: ["Chef's Pick", "Classic", "Gourmet"]
@@ -125,7 +125,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.9,
       cookTime: "40 min",
       difficulty: "Medium",
-      price: "$28",
+      price: "₹549",
       image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop",
       aiReason: "Based on your love for creamy, rich flavors. This classic Indian dish is perfect for both beginners and connoisseurs.",
       tags: ["AI Favorite", "Creamy", "Popular"]
@@ -138,7 +138,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.8,
       cookTime: "50 min",
       difficulty: "Medium",
-      price: "$26",
+      price: "₹499",
       image: "https://img.freepik.com/free-photo/side-view-baked-chicken-with-cucumber-lemon-seasoning-bread-table_141793-4757.jpg",
       aiReason: "Currently trending for its healthy preparation method and bold flavors. Perfect for those who love authentic Indian cuisine.",
       tags: ["Trending", "Healthy", "Grilled"]
@@ -151,7 +151,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.6,
       cookTime: "35 min",
       difficulty: "Easy",
-      price: "$18",
+      price: "₹349",
       image: "https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?w=400&h=300&fit=crop",
       aiReason: "Perfect for vegetarians and health-conscious diners. Rich in iron and packed with authentic Indian flavors.",
       tags: ["Vegetarian", "Healthy", "Nutritious"]
@@ -164,7 +164,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
       rating: 4.7,
       cookTime: "75 min",
       difficulty: "Hard",
-      price: "$32",
+      price: "₹599",
       image: "https://tse4.mm.bing.net/th/id/OIP.8Exik51-ydHvIi7yY7H96wHaDu?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
       aiReason: "A sophisticated Kashmiri dish for special occasions. The AI detected your appreciation for complex, layered flavors.",
       tags: ["Regional", "Sophisticated", "Special Occasion"]
