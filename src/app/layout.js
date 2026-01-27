@@ -3,6 +3,7 @@ import "./globals.css";
 import { CartProvider } from "../components/CartContext";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { AuthProvider } from "../contexts/AuthContext";
+import { FlyToCartProvider } from "../components/FlyToCartAnimation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,7 +33,9 @@ export default function RootLayout({ children }) {
       <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
         <AuthProvider>
           <CartProvider>
-            <ThemeProvider>{children}</ThemeProvider>
+            <ThemeProvider>
+              <FlyToCartProvider>{children}</FlyToCartProvider>
+            </ThemeProvider>
           </CartProvider>
         </AuthProvider>
       </body>

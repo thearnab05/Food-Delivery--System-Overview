@@ -15,6 +15,7 @@ const ShoppingCart = ({ isOpen, onClose }) => {
   }, []);
   const { items, removeFromCart, updateQuantity, getTotalPrice, setCustomerInfo, setOrderStatus, orderStatus, paymentMethod, setPaymentMethod, clearCart, addOrder } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
+  const [showUPIOptions, setShowUPIOptions] = useState(false);
   const [customerInfo, setCustomerInfoState] = useState({
     name: '',
     phone: '',
@@ -33,12 +34,24 @@ const ShoppingCart = ({ isOpen, onClose }) => {
   const handleCheckout = async (e) => {
     e.preventDefault();
     setCustomerInfo(customerInfo);
+
+    // If UPI selected, show UPI options first
+    if (paymentMethod === 'upi') {
+      setShowUPIOptions(true);
+      return;
+    }
+
+    // For COD, process directly
+    await processOrder();
+  };
+
+  const processOrder = async (selectedUPIMethod = null) => {
     setOrderStatus('processing');
     try {
       const payload = {
         items,
         customerInfo,
-        paymentMethod,
+        paymentMethod: selectedUPIMethod || paymentMethod,
         total: parseFloat(getTotalPrice().toFixed(2))
       };
       const res = await orderAPI.checkout(payload);
@@ -57,14 +70,20 @@ const ShoppingCart = ({ isOpen, onClose }) => {
       setTimeout(() => {
         clearCart();
         setShowCheckout(false);
+        setShowUPIOptions(false);
         setOrderStatus('idle');
         onClose();
       }, 2000);
     } catch (err) {
       console.error(err);
       setOrderStatus('idle');
+      setShowUPIOptions(false);
       alert(err?.error || 'Checkout failed');
     }
+  };
+
+  const handleUPIPayment = (method) => {
+    processOrder(method);
   };
 
   const handleInputChange = (e) => {
@@ -174,13 +193,80 @@ const ShoppingCart = ({ isOpen, onClose }) => {
                   </div>
                 ) : orderStatus === 'success' ? (
                   <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce" style={{ animation: 'successPulse 0.5s ease-out' }}>
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Order Confirmed!</h3>
-                    <p className="text-gray-600">Thank you for your order. We'll contact you soon!</p>
+                    <h3 className="text-xl font-bold text-green-600 mb-2">Order Done!</h3>
+                    <style jsx>{`
+                      @keyframes successPulse {
+                        0% { transform: scale(0); opacity: 0; }
+                        50% { transform: scale(1.2); }
+                        100% { transform: scale(1); opacity: 1; }
+                      }
+                    `}</style>
+                  </div>
+                ) : showUPIOptions ? (
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Select Payment Method</h3>
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        onClick={() => handleUPIPayment('gpay')}
+                        className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-gray-100 bg-white hover:border-blue-500 hover:bg-blue-50 transition-all duration-200"
+                      >
+                        {/* Google Pay Logo */}
+                        <div className="w-12 h-12 flex items-center justify-center">
+                          <svg viewBox="0 0 48 48" className="w-10 h-10">
+                            <path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                            <path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                            <path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                          </svg>
+                        </div>
+                        <span className="font-semibold text-gray-700">Google Pay</span>
+                      </button>
+                      <button
+                        onClick={() => handleUPIPayment('phonepe')}
+                        className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-gray-100 bg-white hover:border-purple-500 hover:bg-purple-50 transition-all duration-200"
+                      >
+                        {/* PhonePe Logo */}
+                        <div className="w-12 h-12 bg-[#5f259f] rounded-lg flex items-center justify-center">
+                          <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H9l4-7v4h2l-4 7z" />
+                          </svg>
+                        </div>
+                        <span className="font-semibold text-gray-700">PhonePe</span>
+                      </button>
+                      <button
+                        onClick={() => handleUPIPayment('paytm')}
+                        className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-gray-100 bg-white hover:border-sky-400 hover:bg-sky-50 transition-all duration-200"
+                      >
+                        {/* Paytm Logo */}
+                        <div className="w-12 h-12 bg-[#00BAF2] rounded-lg flex items-center justify-center">
+                          <span className="text-white font-bold text-xs tracking-tight">Pay<span className="text-[#172B85]">tm</span></span>
+                        </div>
+                        <span className="font-semibold text-gray-700">Paytm</span>
+                      </button>
+                      <button
+                        onClick={() => handleUPIPayment('netbanking')}
+                        className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-gray-100 bg-white hover:border-emerald-500 hover:bg-emerald-50 transition-all duration-200"
+                      >
+                        {/* Net Banking - Bank Building Icon */}
+                        <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                          <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v2h20V7L12 2zm0 2.5L18.5 7h-13L12 4.5zM4 11v6h2v-6H4zm5 0v6h2v-6H9zm5 0v6h2v-6h-2zm5 0v6h2v-6h-2zM2 19v2h20v-2H2z" />
+                          </svg>
+                        </div>
+                        <span className="font-semibold text-gray-700">Net Banking</span>
+                      </button>
+                    </div>
+                    <button
+                      onClick={() => setShowUPIOptions(false)}
+                      className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors duration-200 mt-4"
+                    >
+                      Back
+                    </button>
                   </div>
                 ) : (
                   <>
@@ -213,24 +299,24 @@ const ShoppingCart = ({ isOpen, onClose }) => {
                           </button>
                           <button
                             type="button"
-                            onClick={() => setPaymentMethod('card')}
-                            className={`flex-1 flex items-center gap-3 p-4 rounded-xl border-2 transition-all duration-200 ${paymentMethod === 'card'
+                            onClick={() => setPaymentMethod('upi')}
+                            className={`flex-1 flex items-center gap-3 p-4 rounded-xl border-2 transition-all duration-200 ${paymentMethod === 'upi'
                               ? 'border-blue-600 bg-blue-50 shadow-md'
                               : 'border-gray-100 bg-white hover:border-gray-200 hover:bg-gray-50'
                               }`}
                           >
-                            <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${paymentMethod === 'card'
+                            <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${paymentMethod === 'upi'
                               ? 'border-blue-600 bg-blue-600'
                               : 'border-gray-300'
                               }`}>
-                              {paymentMethod === 'card' && (
+                              {paymentMethod === 'upi' && (
                                 <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                 </svg>
                               )}
                             </div>
-                            <span className={`font-semibold ${paymentMethod === 'card' ? 'text-blue-900' : 'text-gray-600'}`}>
-                              Card Payment
+                            <span className={`font-semibold ${paymentMethod === 'upi' ? 'text-blue-900' : 'text-gray-600'}`}>
+                              Net Banking / UPI
                             </span>
                           </button>
                         </div>

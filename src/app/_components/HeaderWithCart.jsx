@@ -144,6 +144,7 @@ function HeaderWithCart({ isAuthenticated: propIsAuthenticated, onAuthRequired }
                   size="sm"
                   onClick={handleCartClick}
                   className="text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 relative p-2"
+                  data-cart-icon
                 >
                   <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
                   {getTotalItems() > 0 && (

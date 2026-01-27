@@ -151,6 +151,7 @@ export const CartProvider = ({ children }) => {
     customerInfo: state.customerInfo,
     orderStatus: state.orderStatus,
     orders: state.orders,
+    paymentMethod: state.paymentMethod,
     addToCart,
     removeFromCart,
     updateQuantity,

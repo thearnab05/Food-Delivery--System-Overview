@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Heart, Star, Clock, Users, ChefHat, ShoppingCart } from 'lucide-react';
 import { useCart } from './CartContext';
+import { useFlyToCart } from './FlyToCartAnimation';
 import { fetchAllFoodItems, getAllCategories, allFoodItems } from './all-food-items.js';
 
 // Get static categories for initial render
@@ -32,6 +33,7 @@ const AIFoodShowcase = ({ isAuthenticated, onAuthRequired }) => {
   const [foodDishes, setFoodDishes] = useState(allFoodItems);
   const [categories, setCategories] = useState(getStaticCategories());
   const { addToCart, getTotalItems } = useCart();
+  const { triggerFlyToCart } = useFlyToCart();
 
   // Fetch food items and categories on component mount (optional API refresh)
   useEffect(() => {
@@ -81,12 +83,21 @@ const AIFoodShowcase = ({ isAuthenticated, onAuthRequired }) => {
     setImageLoading(true);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (event) => {
     if (!isAuthenticated) {
       onAuthRequired();
       return;
     }
     if (!currentDishData) return;
+
+    // Trigger fly-to-cart animation
+    if (event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      triggerFlyToCart(currentDishData.image, {
+        x: rect.left + rect.width / 2 - 32,
+        y: rect.top - 32
+      });
+    }
 
     const success = addToCart(currentDishData);
     if (success) {

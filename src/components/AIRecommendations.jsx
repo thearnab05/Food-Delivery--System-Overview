@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Brain, TrendingUp, Clock, Star, ChefHat, Sparkles, Filter, Search, ShoppingCart } from 'lucide-react';
 import { useCart } from './CartContext';
+import { useFlyToCart } from './FlyToCartAnimation';
 
 const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -11,6 +12,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedDish, setSelectedDish] = useState(null);
   const { addToCart } = useCart();
+  const { triggerFlyToCart } = useFlyToCart();
 
   const categories = [
     { id: 'all', name: 'All Dishes', icon: '🍽️' },
@@ -196,10 +198,19 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
     setShowDetailsModal(true);
   };
 
-  const handleAddToCart = (dish) => {
+  const handleAddToCart = (dish, event) => {
     if (!isAuthenticated) {
       onAuthRequired();
       return;
+    }
+
+    // Trigger fly-to-cart animation
+    if (event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      triggerFlyToCart(dish.image, {
+        x: rect.left + rect.width / 2 - 32,
+        y: rect.top + rect.height / 2 - 32
+      });
     }
 
     const success = addToCart(dish);
@@ -343,7 +354,7 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
                       View Details
                     </button>
                     <button
-                      onClick={() => handleAddToCart(dish)}
+                      onClick={(e) => handleAddToCart(dish, e)}
                       className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white p-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                     >
                       <ShoppingCart className="w-5 h-5" />
