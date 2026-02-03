@@ -221,53 +221,67 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-black py-12 px-4 transition-colors duration-300">
+    <div className="bg-white dark:bg-black py-8 sm:py-12 px-3 sm:px-4 transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Brain className="w-8 h-8 text-blue-500" />
-            <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-orange-500 to-amber-700 dark:from-amber-200 dark:via-yellow-400 dark:to-amber-600 tracking-tight drop-shadow-sm">Take It Cheesy Services</h2>
-            <Brain className="w-8 h-8 text-blue-500" />
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
+            <Brain className="w-6 h-6 sm:w-8 sm:h-8 text-blue-500" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-orange-500 to-amber-700 dark:from-amber-200 dark:via-yellow-400 dark:to-amber-600 tracking-tight drop-shadow-sm">Take It Cheesy Services</h2>
+            <Brain className="w-6 h-6 sm:w-8 sm:h-8 text-blue-500" />
           </div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Experience the art of fine dining with our meticulously curated collection of world-renowned dishes, bringing authentic global flavors directly to your table.
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-2">
+            Experience the art of fine dining with our meticulously curated collection of world-renowned dishes.
           </p>
         </div>
 
         {/* Search and Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
             <input
               type="text"
-              placeholder="Search dishes or AI recommendations..."
+              placeholder="Search dishes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-800 rounded-xl focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 bg-gray-50 dark:bg-gray-900/50 backdrop-blur-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 shadow-inner transition-all duration-300"
+              className="w-full pl-9 sm:pl-10 pr-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-800 rounded-xl focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 bg-gray-50 dark:bg-gray-900/50 backdrop-blur-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 shadow-inner transition-all duration-300 text-sm sm:text-base"
             />
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-2">
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-1 px-1">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl whitespace-nowrap transition-all duration-300 font-medium ${selectedCategory === category.id
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl whitespace-nowrap transition-all duration-300 font-medium text-xs sm:text-sm ${selectedCategory === category.id
                   ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-indigo-500/25 scale-105'
                   : 'bg-gray-100 dark:bg-gray-900/30 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 backdrop-blur-sm'
                   }`}
               >
                 <span>{category.icon}</span>
-                <span>{category.name}</span>
+                <span className="hidden xs:inline sm:inline">{category.name}</span>
               </button>
             ))}
           </div>
         </div>
 
+        {/* Mobile Meal Filter */}
+        <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-4 -mx-1 px-1 scrollbar-hide">
+          {[{ id: 'all', name: 'All', icon: '🧑‍🍳' }, { id: 'breakfast', name: 'Breakfast', icon: '🥐' }, { id: 'lunch', name: 'Lunch', icon: '🍱' }, { id: 'dinner', name: 'Dinner', icon: '🍽️' }].map(meal => (
+            <button
+              key={meal.id}
+              onClick={() => setSelectedMeal(meal.id)}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all duration-300 border ${selectedMeal === meal.id ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white border-transparent shadow-lg' : 'bg-gray-50/50 dark:bg-gray-800/30 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+            >
+              <span>{meal.icon}</span>
+              <span>{meal.name}</span>
+            </button>
+          ))}
+        </div>
+
         {/* Layout: left meal filters + recommendations grid */}
         <div className="flex gap-6">
-          {/* Left vertical meal filters */}
-          <aside className="hidden lg:block w-56">
+          {/* Desktop vertical meal filters */}
+          <aside className="hidden lg:block w-48 xl:w-56 flex-shrink-0">
             <div className="sticky top-24 space-y-3">
               <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-200 mb-2">Meals</h4>
               {[{ id: 'all', name: 'All Meals', icon: '🧑‍🍳' }, { id: 'breakfast', name: 'Breakfast', icon: '🥐' }, { id: 'lunch', name: 'Lunch', icon: '🍱' }, { id: 'dinner', name: 'Dinner', icon: '🍽️' }].map(meal => (
@@ -284,11 +298,11 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
           </aside>
 
           {/* Recommendations Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 flex-1">
             {filteredRecommendations.map((dish) => (
               <div key={dish.id} className="bg-white dark:bg-black backdrop-blur-md rounded-2xl shadow-xl border border-gray-200 dark:border-white/10 overflow-hidden hover:shadow-2xl hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 group">
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 sm:h-48 overflow-hidden">
                   <img
                     src={dish.image}
                     alt={dish.name}
@@ -311,34 +325,34 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 bg-transparent rounded-b-2xl">
-                  <h3 className="text-2xl font-bold mb-3 line-clamp-2 text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200">{dish.name}</h3>
+                <div className="p-4 sm:p-6 bg-transparent rounded-b-2xl">
+                  <h3 className="text-lg sm:text-2xl font-bold mb-2 sm:mb-3 line-clamp-2 text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200">{dish.name}</h3>
 
                   {/* AI Reason */}
-                  <div className="bg-gray-50/80 dark:bg-gradient-to-br dark:from-gray-800/50 dark:to-gray-900/50 rounded-lg p-3 mb-4 border border-gray-100 dark:border-white/5 shadow-inner">
+                  <div className="bg-gray-50/80 dark:bg-gradient-to-br dark:from-gray-800/50 dark:to-gray-900/50 rounded-lg p-2.5 sm:p-3 mb-3 sm:mb-4 border border-gray-100 dark:border-white/5 shadow-inner">
                     <div className="flex items-start gap-2">
-                      <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400 mt-0.5 flex-shrink-0" />
-                      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{dish.aiReason}</p>
+                      <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-2">{dish.aiReason}</p>
                     </div>
                   </div>
 
                   {/* Details */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-gray-500 dark:text-slate-100" />
-                      <span className="text-sm text-gray-600 dark:text-slate-50">{dish.cookTime}</span>
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-500 dark:text-slate-100" />
+                      <span className="text-xs sm:text-sm text-gray-600 dark:text-slate-50">{dish.cookTime}</span>
                     </div>
-                    <div className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(dish.difficulty)}`}>
+                    <div className={`px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium ${getDifficultyColor(dish.difficulty)}`}>
                       {dish.difficulty}
                     </div>
                   </div>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {dish.tags.map((tag, index) => (
+                  <div className="flex flex-wrap gap-1 mb-3 sm:mb-4">
+                    {dish.tags.slice(0, 3).map((tag, index) => (
                       <span
                         key={index}
-                        className="px-2 py-1 bg-gray-100 dark:bg-black text-gray-600 dark:text-gray-100 rounded-full text-xs font-medium border border-gray-200 dark:border-gray-700"
+                        className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 dark:bg-black text-gray-600 dark:text-gray-100 rounded-full text-[10px] sm:text-xs font-medium border border-gray-200 dark:border-gray-700"
                       >
                         {tag}
                       </span>
@@ -349,15 +363,15 @@ const AIRecommendations = ({ isAuthenticated, onAuthRequired }) => {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleViewDetails(dish)}
-                      className="flex-1 bg-transparent hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium py-2.5 px-4 rounded-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500/50"
+                      className="flex-1 bg-transparent hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium py-2 sm:py-2.5 px-3 sm:px-4 rounded-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 text-xs sm:text-sm min-h-[40px] sm:min-h-[44px]"
                     >
-                      View Details
+                      Details
                     </button>
                     <button
                       onClick={(e) => handleAddToCart(dish, e)}
-                      className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white p-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+                      className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white p-2 sm:p-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 min-w-[40px] sm:min-w-[44px] min-h-[40px] sm:min-h-[44px] flex items-center justify-center"
                     >
-                      <ShoppingCart className="w-5 h-5" />
+                      <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                   </div>
                 </div>

@@ -222,27 +222,27 @@ export default function Home() {
       </section>
 
       {/* Menu Preview Section */}
-      <section id="menu" className="py-5 bg-background dark:bg-slate-900">
-        <div className="container">
-          <div className="row text-center mb-5">
+      <section id="menu" className="py-12 sm:py-16 md:py-20 bg-background dark:bg-slate-900">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="row text-center mb-8 sm:mb-12">
             <div className="col-12">
-              <h2 className="display-4 fw-bold text-foreground dark:text-white">Popular Dishes</h2>
-              <p className="lead text-muted-foreground">Try our most loved dishes</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground dark:text-white mb-3 sm:mb-4">Popular Dishes</h2>
+              <p className="text-base sm:text-lg text-muted-foreground">Try our most loved dishes</p>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-4 mb-4">
-              <div className="card border-0 shadow-sm h-100 bg-card dark:bg-slate-700 rounded-3xl overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                <div className="h-48 bg-cover bg-center" style={{
+          <div className="row g-3 sm:g-4">
+            <div className="col-12 col-sm-6 col-md-4 mb-4">
+              <div className="card border-0 shadow-lg h-100 bg-card dark:bg-slate-700 rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                <div className="h-40 sm:h-48 bg-cover bg-center" style={{
                   backgroundImage: 'url("https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=400&h=300&fit=crop&q=80")'
                 }}></div>
-                <div className="card-body p-4">
-                  <h5 className="card-title text-foreground dark:text-white font-bold">Masala Dosa</h5>
-                  <p className="card-text text-muted-foreground text-sm">Crispy fermented crepe filled with spiced potato</p>
-                  <div className="d-flex justify-content-between align-items-center mt-3">
-                    <span className="text-primary font-bold text-lg">₹120</span>
+                <div className="card-body p-3 sm:p-4">
+                  <h5 className="card-title text-foreground dark:text-white font-bold text-base sm:text-lg">Masala Dosa</h5>
+                  <p className="card-text text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3">Crispy fermented crepe filled with spiced potato</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="text-primary font-bold text-base sm:text-lg">₹120</span>
                     <button
-                      className="btn btn-primary btn-sm px-4 py-2 rounded-2xl font-semibold hover:scale-105 transform transition-all duration-200 shadow-md hover:shadow-lg"
+                      className="btn btn-primary btn-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl font-semibold hover:scale-105 transform transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm min-h-[36px] sm:min-h-[40px]"
                       onClick={handleGetStarted}
                     >
                       <i className="fas fa-plus me-1"></i>
@@ -252,71 +252,39 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 mb-4">
-              <div className="card border-0 shadow-sm h-100" style={{
-                borderRadius: '15px',
-                overflow: 'hidden',
-                transition: 'transform 0.3s ease'
-              }}
-                onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-                onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-              >
-                <div style={{
-                  height: '200px',
-                  backgroundImage: 'url("https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop&q=80")',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
+            <div className="col-12 col-sm-6 col-md-4 mb-4">
+              <div className="card border-0 shadow-lg h-100 bg-card dark:bg-slate-700 rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                <div className="h-40 sm:h-48 bg-cover bg-center" style={{
+                  backgroundImage: 'url("https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop&q=80")'
                 }}></div>
-                <div className="card-body">
-                  <h5 className="card-title">Omelette</h5>
-                  <p className="card-text text-muted">Three egg omelette with vegetables and cheese</p>
+                <div className="card-body p-3 sm:p-4">
+                  <h5 className="card-title text-foreground dark:text-white font-bold text-base sm:text-lg">Omelette</h5>
+                  <p className="card-text text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3">Three egg omelette with vegetables and cheese</p>
                   <div className="d-flex justify-content-between align-items-center">
-                    <span style={{ color: '#ff6b35', fontWeight: 'bold', fontSize: '1.2rem' }}>₹100</span>
+                    <span className="text-primary font-bold text-base sm:text-lg">₹100</span>
                     <button
-                      className="btn btn-sm position-relative overflow-hidden"
-                      style={{
-                        background: 'linear-gradient(45deg, #ff6b35, #f7931e)',
-                        border: 'none',
-                        color: 'white',
-                        borderRadius: '25px',
-                        padding: '8px 20px',
-                        fontWeight: '600',
-                        boxShadow: '0 4px 15px rgba(255, 107, 53, 0.3)',
-                        transition: 'all 0.4s ease',
-                        transform: 'scale(1)'
-                      }}
-                      onMouseOver={(e) => {
-                        e.target.style.transform = 'scale(1.1) translateY(-2px)';
-                        e.target.style.boxShadow = '0 8px 25px rgba(255, 107, 53, 0.5)';
-                      }}
-                      onMouseOut={(e) => {
-                        e.target.style.transform = 'scale(1)';
-                        e.target.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.3)';
-                      }}
+                      className="btn btn-primary btn-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl font-semibold hover:scale-105 transform transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm min-h-[36px] sm:min-h-[40px]"
                       onClick={handleGetStarted}
                     >
-                      <span className="position-relative z-10">
-                        <i className="fas fa-plus me-2 transition-transform duration-200 hover:rotate-90"></i>
-                        Add
-                      </span>
-                      <div className="position-absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-25"></div>
+                      <i className="fas fa-plus me-1"></i>
+                      Add
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-4 mb-4">
-              <div className="card border-0 shadow-sm h-100 bg-card dark:bg-slate-700 rounded-3xl overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                <div className="h-48 bg-cover bg-center" style={{
+            <div className="col-12 col-sm-6 col-md-4 mb-4 mx-auto">
+              <div className="card border-0 shadow-lg h-100 bg-card dark:bg-slate-700 rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                <div className="h-40 sm:h-48 bg-cover bg-center" style={{
                   backgroundImage: 'url("https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&h=300&fit=crop&q=80")'
                 }}></div>
-                <div className="card-body p-4">
-                  <h5 className="card-title text-foreground dark:text-white font-bold">Chocolate Lava Cake</h5>
-                  <p className="card-text text-muted-foreground text-sm">Warm chocolate cake with molten center</p>
-                  <div className="d-flex justify-content-between align-items-center mt-3">
-                    <span className="text-primary font-bold text-lg">₹150</span>
+                <div className="card-body p-3 sm:p-4">
+                  <h5 className="card-title text-foreground dark:text-white font-bold text-base sm:text-lg">Chocolate Lava Cake</h5>
+                  <p className="card-text text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3">Warm chocolate cake with molten center</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="text-primary font-bold text-base sm:text-lg">₹150</span>
                     <button
-                      className="btn btn-primary btn-sm px-4 py-2 rounded-2xl font-semibold hover:scale-105 transform transition-all duration-200 shadow-md hover:shadow-lg"
+                      className="btn btn-primary btn-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl font-semibold hover:scale-105 transform transition-all duration-200 shadow-md hover:shadow-lg text-xs sm:text-sm min-h-[36px] sm:min-h-[40px]"
                       onClick={handleGetStarted}
                     >
                       <i className="fas fa-plus me-1"></i>
@@ -327,14 +295,14 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="text-center mt-4">
+          <div className="text-center mt-6 sm:mt-8">
             <button
-              className="btn btn-primary btn-lg px-8 py-3 rounded-3xl font-bold text-lg hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="btn btn-primary px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl sm:rounded-3xl font-bold text-sm sm:text-lg hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-xl min-h-[44px] sm:min-h-[50px]"
               onClick={handleGetStarted}
             >
-              <i className="fas fa-eye me-3"></i>
+              <i className="fas fa-eye me-2 sm:me-3"></i>
               View Full Menu
-              <i className="fas fa-arrow-right ms-3"></i>
+              <i className="fas fa-arrow-right ms-2 sm:ms-3"></i>
             </button>
           </div>
         </div>
