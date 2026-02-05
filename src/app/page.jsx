@@ -309,86 +309,78 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-5 bg-muted dark:bg-slate-800">
-        <div className="container">
-          <div className="row text-center mb-5">
-            <div className="col-12">
-              <h2 className="display-4 fw-bold text-foreground dark:text-white">What Our Customers Say</h2>
-            </div>
+      <section className="py-8 sm:py-12 md:py-16 bg-muted dark:bg-slate-800">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-6 sm:mb-8 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground dark:text-white mb-2 sm:mb-4">What Our Customers Say</h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">Hear from our happy customers about their experience</p>
           </div>
-          <div className="row">
-            <div className="col-md-4 mb-4">
-              <div className="card border-0 shadow-sm bg-card dark:bg-slate-700 rounded-3xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                <div className="card-body p-4">
-                  <div className="text-yellow-400 mb-3 text-lg">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  <p className="card-text text-muted-foreground mb-4 italic">&ldquo;Amazing food and super fast delivery! The butter chicken was absolutely delicious.&rdquo;</p>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face&q=80"
-                      alt="Customer"
-                      className="rounded-full me-3 w-12 h-12 object-cover"
-                    />
-                    <div>
-                      <h6 className="mb-0 text-foreground dark:text-white font-semibold">John Doe</h6>
-                      <small className="text-muted-foreground">Regular Customer</small>
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="card border-0 shadow-sm bg-card dark:bg-slate-700 rounded-2xl sm:rounded-3xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+              <div className="card-body p-4 sm:p-6">
+                <div className="text-yellow-400 mb-2 sm:mb-3 text-base sm:text-lg">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                </div>
+                <p className="card-text text-muted-foreground mb-3 sm:mb-4 italic text-sm sm:text-base">&ldquo;Amazing food and super fast delivery! The butter chicken was absolutely delicious.&rdquo;</p>
+                <div className="d-flex align-items-center">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face&q=80"
+                    alt="Customer"
+                    className="rounded-full me-3 w-10 h-10 sm:w-12 sm:h-12 object-cover"
+                  />
+                  <div>
+                    <h6 className="mb-0 text-foreground dark:text-white font-semibold text-sm sm:text-base">John Doe</h6>
+                    <small className="text-muted-foreground text-xs sm:text-sm">Regular Customer</small>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-4 mb-4">
-              <div className="card border-0 shadow-sm" style={{ borderRadius: '15px' }}>
-                <div className="card-body p-4">
-                  <div style={{ color: '#ffd700', marginBottom: '1rem' }}>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  <p className="card-text text-muted-foreground mb-4 italic">&ldquo;Best food delivery service in town. Fresh ingredients and great taste every time!&rdquo;</p>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face&q=80"
-                      alt="Customer"
-                      className="rounded-circle me-3"
-                      style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                    />
-                    <div>
-                      <h6 className="mb-0">Sarah Wilson</h6>
-                      <small className="text-muted">Food Blogger</small>
-                    </div>
+            <div className="card border-0 shadow-sm bg-card dark:bg-slate-700 rounded-2xl sm:rounded-3xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+              <div className="card-body p-4 sm:p-6">
+                <div className="text-yellow-400 mb-2 sm:mb-3 text-base sm:text-lg">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                </div>
+                <p className="card-text text-muted-foreground mb-3 sm:mb-4 italic text-sm sm:text-base">&ldquo;Best food delivery service in town. Fresh ingredients and great taste every time!&rdquo;</p>
+                <div className="d-flex align-items-center">
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face&q=80"
+                    alt="Customer"
+                    className="rounded-full me-3 w-10 h-10 sm:w-12 sm:h-12 object-cover"
+                  />
+                  <div>
+                    <h6 className="mb-0 text-foreground dark:text-white font-semibold text-sm sm:text-base">Sarah Wilson</h6>
+                    <small className="text-muted-foreground text-xs sm:text-sm">Food Blogger</small>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-4 mb-4">
-              <div className="card border-0 shadow-sm bg-card dark:bg-slate-700 rounded-3xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                <div className="card-body p-4">
-                  <div className="text-yellow-400 mb-3 text-lg">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  <p className="card-text text-muted-foreground mb-4 italic">&ldquo;Love the variety and quality. Take It Cheesy never disappoints!&rdquo;</p>
-                  <div className="d-flex align-items-center">
-                    <img
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face&q=80"
-                      alt="Customer"
-                      className="rounded-full me-3 w-12 h-12 object-cover"
-                    />
-                    <div>
-                      <h6 className="mb-0 text-foreground dark:text-white font-semibold">Mike Johnson</h6>
-                      <small className="text-muted-foreground">Chef</small>
-                    </div>
+            <div className="card border-0 shadow-sm bg-card dark:bg-slate-700 rounded-2xl sm:rounded-3xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 sm:col-span-2 lg:col-span-1 mx-auto sm:max-w-md lg:max-w-none w-full">
+              <div className="card-body p-4 sm:p-6">
+                <div className="text-yellow-400 mb-2 sm:mb-3 text-base sm:text-lg">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                </div>
+                <p className="card-text text-muted-foreground mb-3 sm:mb-4 italic text-sm sm:text-base">&ldquo;Love the variety and quality. Take It Cheesy never disappoints!&rdquo;</p>
+                <div className="d-flex align-items-center">
+                  <img
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face&q=80"
+                    alt="Customer"
+                    className="rounded-full me-3 w-10 h-10 sm:w-12 sm:h-12 object-cover"
+                  />
+                  <div>
+                    <h6 className="mb-0 text-foreground dark:text-white font-semibold text-sm sm:text-base">Mike Johnson</h6>
+                    <small className="text-muted-foreground text-xs sm:text-sm">Chef</small>
                   </div>
                 </div>
               </div>
@@ -398,46 +390,46 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-black text-gray-800 dark:text-white py-12 transition-colors duration-300">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4 mb-4">
-              <h5 className="font-bold mb-3 text-gray-900 dark:text-white">Take It Cheesy</h5>
-              <p className="text-gray-600 dark:text-gray-300">Your favorite food, delivered fast and fresh to your doorstep.</p>
-              <div className="flex space-x-4 mt-4">
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-xl">
+      <footer className="bg-gray-100 dark:bg-black text-gray-800 dark:text-white py-8 sm:py-10 md:py-12 transition-colors duration-300">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="text-center sm:text-left">
+              <h5 className="font-bold mb-3 text-gray-900 dark:text-white text-lg sm:text-xl">Take It Cheesy</h5>
+              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Your favorite food, delivered fast and fresh to your doorstep.</p>
+              <div className="flex space-x-4 mt-4 justify-center sm:justify-start">
+                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-lg sm:text-xl p-2 hover:scale-110 transform">
                   <i className="fab fa-facebook"></i>
                 </a>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-xl">
+                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-lg sm:text-xl p-2 hover:scale-110 transform">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-xl">
+                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-lg sm:text-xl p-2 hover:scale-110 transform">
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-xl">
+                <a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-lg sm:text-xl p-2 hover:scale-110 transform">
                   <i className="fab fa-youtube"></i>
                 </a>
               </div>
             </div>
-            <div className="col-md-4 mb-4">
-              <h5 className="font-bold mb-3 text-gray-900 dark:text-white">Quick Links</h5>
+            <div className="text-center sm:text-left">
+              <h5 className="font-bold mb-3 text-gray-900 dark:text-white text-lg sm:text-xl">Quick Links</h5>
               <ul className="list-unstyled space-y-2">
-                <li><a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-decoration-none">About Us</a></li>
-                <li><a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-decoration-none">Menu</a></li>
-                <li><a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-decoration-none">Contact</a></li>
-                <li><a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-decoration-none">Privacy Policy</a></li>
+                <li><a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-decoration-none text-sm sm:text-base">About Us</a></li>
+                <li><a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-decoration-none text-sm sm:text-base">Menu</a></li>
+                <li><a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-decoration-none text-sm sm:text-base">Contact</a></li>
+                <li><a href="#" className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors duration-300 text-decoration-none text-sm sm:text-base">Privacy Policy</a></li>
               </ul>
             </div>
-            <div className="col-md-4 mb-4">
-              <h5 className="font-bold mb-3 text-gray-900 dark:text-white">Contact Info</h5>
-              <p className="text-gray-600 dark:text-gray-300 mb-2"><i className="fas fa-map-marker-alt me-2 text-primary"></i>123 Food Street, City</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-2"><i className="fas fa-phone me-2 text-primary"></i>+1 234 567 8900</p>
-              <p className="text-gray-600 dark:text-gray-300 mb-2"><i className="fas fa-envelope me-2 text-primary"></i>info@takeitcheesy.com</p>
+            <div className="text-center sm:text-left sm:col-span-2 lg:col-span-1">
+              <h5 className="font-bold mb-3 text-gray-900 dark:text-white text-lg sm:text-xl">Contact Info</h5>
+              <p className="text-gray-600 dark:text-gray-300 mb-2 text-sm sm:text-base"><i className="fas fa-map-marker-alt me-2 text-primary"></i>123 Food Street, City</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-2 text-sm sm:text-base"><i className="fas fa-phone me-2 text-primary"></i>+1 234 567 8900</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-2 text-sm sm:text-base"><i className="fas fa-envelope me-2 text-primary"></i>info@takeitcheesy.com</p>
             </div>
           </div>
-          <hr className="my-8 border-gray-300 dark:border-gray-700" />
+          <hr className="my-6 sm:my-8 border-gray-300 dark:border-gray-700" />
           <div className="text-center">
-            <p className="text-gray-500 dark:text-gray-400">&copy; 2025 Take It Cheesy. All rights reserved.</p>
+            <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">&copy; 2025 Take It Cheesy. All rights reserved.</p>
           </div>
         </div>
       </footer>
