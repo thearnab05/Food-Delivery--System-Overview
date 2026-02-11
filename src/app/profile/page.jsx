@@ -52,28 +52,28 @@ export default function ProfilePage() {
       <div className="min-h-screen bg-gray-50 dark:bg-black transition-colors duration-300 pb-20">
 
         {/* Cover Banner */}
-        <div className="h-64 bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 relative overflow-hidden">
+        <div className="h-40 sm:h-52 md:h-64 bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
           <div className="absolute inset-0 bg-black/10"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-10">
+        <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 -mt-16 sm:-mt-20 md:-mt-24 relative z-10">
           <div className="flex flex-col md:flex-row items-start md:space-x-8">
 
             {/* Left Column: Profile Card */}
-            <div className="flex-shrink-0 w-full md:w-80 mb-8 md:mb-0">
+            <div className="flex-shrink-0 w-full md:w-72 lg:w-80 mb-6 md:mb-0">
               <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800">
-                <div className="p-6 md:p-8 flex flex-col items-center text-center">
+                <div className="p-4 sm:p-6 md:p-8 flex flex-col items-center text-center">
                   <div className="relative group mb-6">
-                    <div className="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center overflow-hidden">
-                      <span className="text-4xl text-white font-bold">{user.username.charAt(0).toUpperCase()}</span>
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center overflow-hidden">
+                      <span className="text-3xl sm:text-4xl text-white font-bold">{user.username.charAt(0).toUpperCase()}</span>
                     </div>
                     <button className="absolute bottom-0 right-0 p-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                       <Camera className="w-4 h-4" />
                     </button>
                   </div>
 
-                  <h1 className="text-2xl font-bold text-black dark:text-white mb-1">{user.username}</h1>
+                  <h1 className="text-xl sm:text-2xl font-bold text-black dark:text-white mb-1">{user.username}</h1>
                   <div className="flex items-center space-x-2 mb-6">
                     <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-semibold rounded-full border border-blue-100 dark:border-blue-800">
                       Premium Member
@@ -127,12 +127,12 @@ export default function ProfilePage() {
             </div>
 
             {/* Right Column: Details & Settings */}
-            <div className="flex-1 w-full space-y-6 md:mt-10">
+            <div className="flex-1 w-full space-y-4 sm:space-y-6 md:mt-10">
 
               {/* Personal Info */}
-              <div className="bg-white dark:bg-black rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 md:p-8">
+              <div className="bg-white dark:bg-black rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 p-4 sm:p-6 md:p-8">
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">Personal Information</h2>
+                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Personal Information</h2>
                   <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 text-sm font-medium flex items-center">
                     <Edit2 className="w-4 h-4 mr-1" /> Edit
                   </button>
@@ -186,7 +186,7 @@ export default function ProfilePage() {
               </div>
 
               {/* Account Actions */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 <button className="flex items-center justify-between p-6 bg-white dark:bg-slate-900 border border-gray-100 dark:border-gray-800 rounded-2xl hover:shadow-md transition-shadow group h-full">
                   <div className="flex items-center space-x-4">
                     <div className="p-3 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl group-hover:scale-110 transition-transform">

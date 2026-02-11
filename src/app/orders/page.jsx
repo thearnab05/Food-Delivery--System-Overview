@@ -57,9 +57,9 @@ export default function OrdersPage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gray-50 dark:bg-black py-12 transition-colors duration-300">
-        <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Order History</h1>
+      <div className="min-h-screen bg-gray-50 dark:bg-black py-6 sm:py-8 md:py-12 transition-colors duration-300">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">Order History</h1>
 
           {loading ? (
             <div className="p-8 bg-white dark:bg-slate-900 rounded-xl shadow text-center transition-colors duration-300">
@@ -74,13 +74,13 @@ export default function OrdersPage() {
           ) : (
             <div className="space-y-4">
               {allOrders.map(order => (
-                <div key={order.id} className="bg-white dark:bg-slate-900 p-4 rounded-xl shadow transition-colors duration-300">
-                  <div className="flex items-center justify-between mb-3">
+                <div key={order.id} className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-xl shadow transition-colors duration-300">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-1 sm:gap-0">
                     <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Order #{order.id}</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{new Date(order.date).toLocaleString()}</p>
+                      <h3 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white truncate max-w-[200px] sm:max-w-none">Order #{order.id}</h3>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{new Date(order.date).toLocaleString()}</p>
                     </div>
-                    <div className="text-right">
+                    <div className="text-left sm:text-right flex sm:flex-col items-center sm:items-end gap-2 sm:gap-0">
                       <p className="font-bold text-green-600 dark:text-green-500">₹{parseFloat(order.total).toFixed(2)}</p>
                       <p className="text-sm text-gray-500 dark:text-gray-400 capitalize">{order.status}</p>
                     </div>
@@ -88,11 +88,11 @@ export default function OrdersPage() {
 
                   <div className="grid grid-cols-1 gap-3">
                     {order.items.map((it, idx) => (
-                      <div key={idx} className="flex items-center gap-4">
-                        <Image src={it.image} alt={it.name} width={64} height={64} className="w-16 h-16 object-cover rounded-md" />
+                      <div key={idx} className="flex items-center gap-3 sm:gap-4">
+                        <Image src={it.image} alt={it.name} width={64} height={64} className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-cover rounded-md flex-shrink-0" />
                         <div className="flex-1">
                           <div className="flex justify-between">
-                            <h4 className="font-medium text-gray-900 dark:text-gray-100">{it.name}</h4>
+                            <h4 className="font-medium text-sm sm:text-base text-gray-900 dark:text-gray-100 line-clamp-1">{it.name}</h4>
                             <span className="text-sm text-gray-600 dark:text-gray-400">x{it.quantity}</span>
                           </div>
                           <p className="text-sm text-gray-500 dark:text-gray-400">₹{(parseFloat(it.price) * it.quantity).toFixed(2)}</p>
