@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Order from '@/models/Order';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/orders?email=user@example.com
 export async function GET(request) {
     try {

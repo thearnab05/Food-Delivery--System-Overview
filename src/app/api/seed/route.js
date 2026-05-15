@@ -3,6 +3,8 @@ import FoodItem from '@/models/foodItem';
 import { allFoodItems } from '@/components/all-food-items';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
     await connectDB();
     try {
