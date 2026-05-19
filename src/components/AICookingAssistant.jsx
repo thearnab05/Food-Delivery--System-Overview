@@ -224,7 +224,7 @@ const AICookingAssistant = () => {
 
             {/* Stats */}
             <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl p-6 text-white">
-              <h3 className="font-semibold mb-4">Today's Stats</h3>
+              <h3 className="font-semibold mb-4">Today&apos;s Stats</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span>Questions answered</span>
